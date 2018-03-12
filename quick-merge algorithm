@@ -1,0 +1,39 @@
+#include <stdio.h>
+#define N 1000
+
+/*
+快速合并算法 合并快速 利用树的概念 但是查询缓慢  当M次队列pq N组数据 最坏情况查找  N-1次 平均(N-1)/2 M*N/2为平均查询
+为了避免这种最坏情况 另有加权快速合并算法
+即
+ 1->100
+ 100->200
+ 1->200
+ 的自动连通问题
+*/
+main()
+{
+    int i,p,q,t,id[N],j;
+    /* 为数组id赋值 id[3]=3*/
+    for(i=0;i<N;i++)
+    {
+        id[i]=i;
+    }
+
+    /* scanf()返回值为该函数成功读入的数据个数。 */
+    while(scanf("%d %d",&p,&q) == 2)
+    {
+
+        for(i=p;i!=id[i];i=id[i]);
+        for(j=q;j!=id[j];j=id[j]);
+        if(i==j)
+        {
+            printf("%d%s%d\n",p," equal ",q);
+            continue;
+        }
+
+        id[i]=j;
+        printf("%d%s%d\n",p," is not equal ",q);
+
+    }
+
+}
