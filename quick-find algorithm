@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define N 1000
+
+/*
+快速查找算法  查找快速但是合并缓慢 假设有N个数据 M次队列 合并大概要M*N次
+即
+ 1->100
+ 100->200
+ 1->200
+ 的自动连通问题
+*/
+main()
+{
+    int i,p,q,t,id[N];
+    /* 为数组id赋值 id[3]=3*/
+    for(i=0;i<N;i++)
+    {
+        id[i]=i;
+    }
+
+    /* scanf()返回值为该函数成功读入的数据个数。 */
+    while(scanf("%d %d",&p,&q) == 2)
+    {
+        printf("\n");
+        /* 如果两个相等 进入下次循环*/
+        if(id[p]==id[q])
+        {
+            printf("%d%s%d\n",p," equal ",q);
+            continue;
+        }
+
+        printf("%d%s%d\n",p," is not equal ",q);
+        /* 便利所有的数组id 找到值和id[p]一样的,另id[i]等于id[q] 实现联通*/
+        for(t=id[p],i=0;i<N;i++)
+            if(id[i]==t)
+            {
+                id[i]=id[q];
+            }
+
+
+    }
+
+}
